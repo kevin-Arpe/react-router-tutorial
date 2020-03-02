@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, NavLink } from 'react-router-dom';
 import { Home, About, User } from './components';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -10,20 +11,23 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <NavLink exact to="/">Home</NavLink>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <NavLink to="/about">About</NavLink>
               </li>
               <li>
-                <Link to="/user">User</Link>
+                <NavLink to="/user">User</NavLink>
               </li>
             </ul>
           </nav>
 
-          <Route exact="true" path='/' component={ Home } />
-          <Route path='/about' component={ About } />
-          <Route path='/user' component={ User } />
+          <Switch>
+            <Route exact path='/' component={ Home } />
+            <Route path='/about' component={ About } />
+            <Route path='/user' component={ User } />
+            <Route path='/'>Not found 404</Route>
+          </Switch>
         </div>
       </Router>
     );
